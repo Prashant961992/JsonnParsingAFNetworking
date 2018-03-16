@@ -115,61 +115,61 @@ class ApplicationData: NSObject {
         return dateFormatter
     }
   
-    func payPalConfiguration(viewController : UIViewController, navigation : UINavigationController) {
-        let payPalConfig = PayPalConfiguration()
-        payPalConfig.acceptCreditCards = true
-        payPalConfig.merchantName = "Awesome Shirts, Inc."
-        payPalConfig.merchantPrivacyPolicyURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
-        payPalConfig.merchantUserAgreementURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
-        
-        // Setting the languageOrLocale property is optional.
-        //
-        // If you do not set languageOrLocale, then the PayPalPaymentViewController will present
-        // its user interface according to the device's current language setting.
-        //
-        // Setting languageOrLocale to a particular language (e.g., @"es" for Spanish) or
-        // locale (e.g., @"es_MX" for Mexican Spanish) forces the PayPalPaymentViewController
-        // to use that language/locale.
-        //
-        // For full details, including a list of available languages and locales, see PayPalPaymentViewController.h.
-        
-        payPalConfig.languageOrLocale = Locale.preferredLanguages[0]
-        
-        // Setting the payPalShippingAddressOption property is optional.
-        //
-        // See PayPalConfiguration.h for details.
-        
-        payPalConfig.payPalShippingAddressOption = .payPal;
-        
-        print("PayPal iOS SDK Version: \(PayPalMobile.libraryVersion())")
-        let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 1, withPrice: NSDecimalNumber(string: "50.00"), withCurrency: "USD", withSku: "Hip-0037")
-        
-        let items = [item1]
-        let subtotal = PayPalItem.totalPrice(forItems: items)
-        
-        // Optional: include payment details
-        let shipping = NSDecimalNumber(string: "5.00")
-        let tax = NSDecimalNumber(string: "2.50")
-        let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
-        let total = subtotal.adding(shipping).adding(tax)
-        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Donate", intent: .sale)
-        
-        payment.items = items
-        payment.paymentDetails = paymentDetails
-        
-        if (payment.processable) {
-            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: viewController as! PayPalPaymentDelegate)
-            navigation.present(paymentViewController!, animated: true, completion: nil)
-        }
-        else {
-            // This particular payment will always be processable. If, for
-            // example, the amount was negative or the shortDescription was
-            // empty, this payment wouldn't be processable, and you'd want
-            // to handle that here.
-            print("Payment not processalbe: \(payment)")
-        }
-    }
-    
+//    func payPalConfiguration(viewController : UIViewController, navigation : UINavigationController) {
+//        let payPalConfig = PayPalConfiguration()
+//        payPalConfig.acceptCreditCards = true
+//        payPalConfig.merchantName = "Awesome Shirts, Inc."
+//        payPalConfig.merchantPrivacyPolicyURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
+//        payPalConfig.merchantUserAgreementURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
+//
+//        // Setting the languageOrLocale property is optional.
+//        //
+//        // If you do not set languageOrLocale, then the PayPalPaymentViewController will present
+//        // its user interface according to the device's current language setting.
+//        //
+//        // Setting languageOrLocale to a particular language (e.g., @"es" for Spanish) or
+//        // locale (e.g., @"es_MX" for Mexican Spanish) forces the PayPalPaymentViewController
+//        // to use that language/locale.
+//        //
+//        // For full details, including a list of available languages and locales, see PayPalPaymentViewController.h.
+//
+//        payPalConfig.languageOrLocale = Locale.preferredLanguages[0]
+//
+//        // Setting the payPalShippingAddressOption property is optional.
+//        //
+//        // See PayPalConfiguration.h for details.
+//
+//        payPalConfig.payPalShippingAddressOption = .payPal;
+//
+//        print("PayPal iOS SDK Version: \(PayPalMobile.libraryVersion())")
+//        let item1 = PayPalItem(name: "Old jeans with holes", withQuantity: 1, withPrice: NSDecimalNumber(string: "50.00"), withCurrency: "USD", withSku: "Hip-0037")
+//
+//        let items = [item1]
+//        let subtotal = PayPalItem.totalPrice(forItems: items)
+//
+//        // Optional: include payment details
+//        let shipping = NSDecimalNumber(string: "5.00")
+//        let tax = NSDecimalNumber(string: "2.50")
+//        let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
+//        let total = subtotal.adding(shipping).adding(tax)
+//        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Donate", intent: .sale)
+//
+//        payment.items = items
+//        payment.paymentDetails = paymentDetails
+//
+//        if (payment.processable) {
+//            let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: viewController as! PayPalPaymentDelegate)
+//            navigation.present(paymentViewController!, animated: true, completion: nil)
+//        }
+//        else {
+//            // This particular payment will always be processable. If, for
+//            // example, the amount was negative or the shortDescription was
+//            // empty, this payment wouldn't be processable, and you'd want
+//            // to handle that here.
+//            print("Payment not processalbe: \(payment)")
+//        }
+//    }
+
 }
 
 
