@@ -28,7 +28,7 @@ typedef enum
     kHTTPMethod_DELETE
 }HTTPMethod;
 
-
+#define TABLENAME @"mediminder1.sql"
 #ifdef DEBUG
 #define NSLog(FORMAT, ...) fprintf(stderr,"Kaushal  %s\n", [[NSString stringWithFormat:FORMAT,      ##__VA_ARGS__] UTF8String]);
 #else

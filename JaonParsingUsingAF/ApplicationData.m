@@ -54,6 +54,76 @@ static ApplicationData *applicationData = nil;
 }
 - (void)initialize{
 }
++(NSInteger )DMLOperationwithDic:(NSString *)query withParameter:(NSMutableDictionary *)object{
+    FMDatabase *db = [FMDatabase databaseWithPath:TABLENAME];
+    [db open];
+    NSInteger lastID = 0;
+    if ([db open]) {
+        if (object == nil) {
+            BOOL val=[db executeUpdate:query];
+            if (val) {
+                lastID = [db lastInsertRowId];
+            }
+        } else {
+            BOOL val=  [db executeUpdate:query withParameterDictionary:object];
+            if (val) {
+                lastID = [db lastInsertRowId];
+            }
+        }
+    }else{
+        NSLog(@"Failed to open database!!!!!");
+    }
+    [db close];
+    return lastID;
+}
++(void)updateQuerywithoutObject:(NSString *)query{
+    FMDatabase *db = [FMDatabase databaseWithPath:TABLENAME];
+    [db open];
+    if ([db open]) {
+        [db executeUpdate:query];
+    }else{
+        NSLog(@"Failed to open database!!!!!");
+    }
+    [db close];
+}
++(BOOL )deleteQuery:(NSString *)query{
+    BOOL val;
+    FMDatabase *db = [FMDatabase databaseWithPath:TABLENAME];
+    [db open];
+    if ([db open]) {
+        val = true;
+        [db executeUpdate:query];
+    }else{
+        val = false;
+        NSLog(@"Failed to open database!!!!!");
+    }
+    [db close];
+    return val;
+}
++(NSMutableArray *)ExecuteQuery:(NSString *)query withParameter:(NSArray *)object{
+    FMDatabase *db = [FMDatabase databaseWithPath:TABLENAME];
+    FMResultSet *resultSet ;
+    NSMutableArray *arrData = [[NSMutableArray alloc] init];
+    [db open];
+    if ([db open]) {
+        if (object == nil) {
+            resultSet =  [db executeQuery:query];
+            while ([resultSet next]) {
+                [arrData addObject:[resultSet resultDictionary]];
+                //                NSLog(@"%@", [[resultSet resultDict] description]);
+            }
+        } else {
+            resultSet =  [db executeQuery:query withArgumentsInArray:object];
+            while ([resultSet next]) {
+                [arrData addObject:[resultSet resultDict]];
+            }
+        }
+    }else{
+        NSLog(@"Failed to open database!!!!!");
+    }
+    [db close];
+    return arrData;
+}
 + (ApplicationData*)sharedInstance{
     if (applicationData == nil){
         applicationData = [[super allocWithZone:NULL] init];

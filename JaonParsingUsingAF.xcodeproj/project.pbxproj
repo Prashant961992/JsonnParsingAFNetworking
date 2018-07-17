@@ -662,7 +662,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prashant.JaonParsingUsingAF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/prashant/Downloads/JaonParsingUsingAF/JaonParsingUsingAF/JaonParsingUsingAF-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/prashant/Desktop/JsonnParsingAFNetworking/JaonParsingUsingAF/JaonParsingUsingAF-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -675,7 +675,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.prashant.JaonParsingUsingAF;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/prashant/Downloads/JaonParsingUsingAF/JaonParsingUsingAF/JaonParsingUsingAF-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/prashant/Desktop/JsonnParsingAFNetworking/JaonParsingUsingAF/JaonParsingUsingAF-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
